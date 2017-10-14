@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'issues#new'
 
-  resources :issues, only: [:index, :new, :create, :update] do
-    # member { post :update_status }
+  resources :issues, only: [:index, :new, :create, :update, :show] do
+    member { put :assign }
   end
 end

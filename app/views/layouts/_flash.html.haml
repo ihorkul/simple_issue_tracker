@@ -1,11 +1,9 @@
-- flash.each do |type, message|
-  .alert.flash.text-center.fade.in{:class => bootstrap_class_for(type) }
-    %button.close{ 'data-dismiss' => "alert" }
-      %span{ 'aria-hidden' => "true"}
-        &times
-      %span.sr-only
-        Close
-    = message
-
-
-
+.flashes
+  - flash.each do |type, message|
+    .alert.flash.text-center.fade.in{:class => bootstrap_class_for(type) }
+      %button.close{ 'data-dismiss' => "alert" }
+        %span{ 'aria-hidden' => "true"}
+          &times
+        %span.sr-only
+          Close
+      = message

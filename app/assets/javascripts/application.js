@@ -31,14 +31,32 @@ $( ".column_content" ).sortable({
     .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
     .find( ".portlet-header" ).addClass( "ui-widget-header ui-corner-all" )
 
-function update_status(event, ui) {
+  function update_status(event, ui) {
     var status_id = $(this).siblings('.column_header').data('status-id');
     var issue_id = ui.item.data('issue-id');
-    $.ajax({
-      type: 'PUT',
-      dataType : 'script',
-      data: { issue: { status_id: status_id } },
-      url: '/issues/' + issue_id
-    });
+    var data = { issue: { status_id: status_id } }
+    send_ajax(issue_id, data)
   }
+}
+
+$(document).on('click', '.btn.assign', function(){
+  var issue_id = $(this).parents('.container').data('issue-id');
+  var user_id = $(this).data('user-id');
+  var data = { issue: { user_id: user_id } }
+  send_ajax(issue_id, data)
+})
+
+$(document).on('change', '.update_status', function(){
+  var issue_id = $(this).parents('.container').data('issue-id');
+  var status_id = $(this).val();
+  var data = { issue: { status_id: status_id } }
+  send_ajax(issue_id, data)
+})
+function send_ajax(issue_id, data){
+  $.ajax({
+    type: 'PUT',
+    dataType : 'script',
+    data: data,
+    url: '/issues/' + issue_id
+  });
 }

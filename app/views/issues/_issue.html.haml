@@ -1,5 +1,8 @@
 .panel{ class: ticket_class(issue), data: { issue_id: issue.id }}
   .panel-heading= issue.key
   .panel-body= issue.subject
-  .panel-footer
-    lol
+  .panel-footer.text-right
+    .pull-left= issue.department.name
+    =link_to issue do
+      .btn.btn-default.btn-xs.pull-right Open 
+    .clearfix

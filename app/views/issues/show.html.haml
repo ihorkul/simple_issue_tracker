@@ -1,0 +1,31 @@
+.container{ data: { issue_id: @issue.id } }
+  %h1 Ticket #{@issue.key}
+  .row
+    .col-md-3 User name
+    .col-md-9= @issue.user_name
+  .row
+    .col-md-3 Email
+    .col-md-9= @issue.email
+  .row
+    .col-md-3 Assigned person
+    .col-md-9.assigned_person
+      -if @issue.user_id.nil?
+        .btn.btn-default.btn-xs.assign{ data: { user_id: current_user.id } } Assign to me 
+      -else
+        = @issue.user.email
+  .row
+    .col-md-3 Department
+    .col-md-9= @issue.department.name
+  .row
+    .col-md-3 Status
+    .col-md-5= select_tag 'status_id', options_from_collection_for_select(Status.all, 'id', 'name'), class: 'form-control select update_status', autocomplete: :off
+    .col-md-4
+  .row
+    .col-md-3 Subject
+    .col-md-9= @issue.subject
+  .row
+    .col-md-3 Content:
+    .col-md-9= @issue.content
+  %h3 Comments:
+
+      

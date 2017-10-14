@@ -1,10 +1,5 @@
 = form_for @issue do |f|
-  - if @issue.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@issue.errors.count, "error")} prohibited this item from being saved:"
-      %ul
-        - @issue.errors.full_messages.each do |message|
-          %li= message
+  .errors=render partial: 'layouts/errors', locals: { resource: @issue }
 
   .form-group.row
     = f.label :user_name, 'Your name', class: 'col-sm-2 col-form-label col-form-label-lg'
@@ -16,8 +11,8 @@
       = f.email_field :email, class: "form-control form-control-lg", placeholder: "Your email"
   .form-group.row
     = f.label :department, class: 'col-sm-2 col-form-label col-form-label-lg'
-    .col-sm-10
-      = f.select :department_id, options_from_collection_for_select(Department.all, 'id', 'name'), { prompt: 'Select' }, { class: 'form-control' }
+    .col-sm-5
+      = f.select :department_id, options_from_collection_for_select(Department.all, 'id', 'name'), { }, { class: 'form-control' }
   .form-group.row
     = f.label :subject, class: 'col-sm-2 col-form-label col-form-label-lg'
     .col-sm-10

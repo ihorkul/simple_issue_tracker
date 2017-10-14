@@ -1,9 +1,10 @@
 class IssuesController < ApplicationController
-  skip_before_action :authenticate_user!, only: :new
+  skip_before_action :authenticate_user!, only: [:new, :edit]
+  before_action :set_issue, only: [:update, :show, :edit]
 
   def index
     @statuses = Status.all.order(:id)
-    @issues = Issue.all
+    @issues = Issue.all.includes(:department)
   end
 
   def new
@@ -20,21 +21,33 @@ class IssuesController < ApplicationController
     end
   end
 
+  def show
+  end
+
+  def edit
+    @user_name = @issue.user_name
+  end
+
   def update
     @issue.assign_attributes(issue_params)
     @issue.user_id = current_user.id if @issue.user_id.nil?
     respond_to do |format|
       if @issue.save
-        format.html { render :new, success: 'Disease was successfully updated.' }
-        format.js
+        flash[:success] = 'Ticket was successfully updated.'
+        format.html { render :new }
+        format.js {}
       else
         format.html { render :new }
-        format.js
+        format.js {}
       end
     end
   end
 
   private
+
+  def set_issue
+    @issue = Issue.find params[:id]
+  end
 
   def issue_params
     params.require(:issue).permit(:user_name, :email, :department_id, :subject, :content, :user_id, :status_id)
