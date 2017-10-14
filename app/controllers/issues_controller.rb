@@ -1,6 +1,6 @@
 class IssuesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:new, :edit]
-  before_action :set_issue, only: [:update, :show, :edit]
+  before_action :set_issue, only: [:update, :show]
 
   def index
     @statuses = Status.all.order(:id)
@@ -25,22 +25,14 @@ class IssuesController < ApplicationController
   end
 
   def edit
+    @issue = Issue.find_by(key: params[:key])
     @user_name = @issue.user_name
   end
 
   def update
     @issue.assign_attributes(issue_params)
     @issue.user_id = current_user.id if @issue.user_id.nil?
-    respond_to do |format|
-      if @issue.save
-        flash[:success] = 'Ticket was successfully updated.'
-        format.html { render :new }
-        format.js {}
-      else
-        format.html { render :new }
-        format.js {}
-      end
-    end
+    flash[:success] = 'Ticket was successfully updated.' if @issue.save
   end
 
   private
