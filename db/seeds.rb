@@ -14,3 +14,15 @@ departments = %w(Department1 Department2 Department3 Department4 Department5)
 departments.each do |dep|
   Department.create(name: dep)
 end
+
+User.create(
+  email: 'user1@mail.com',
+  password: '111111',
+  password_confirmation: '111111'
+)
+
+User.create(
+  email: 'user2@mail.com',
+  password: '111111',
+  password_confirmation: '111111'
+)

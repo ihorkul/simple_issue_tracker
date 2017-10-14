@@ -5,7 +5,7 @@ class Issue < ApplicationRecord
   belongs_to :status
   belongs_to :department
 
-  before_validation :set_validatable_fields
+  before_validation :set_validatable_fields, if: ->(issue) { issue.new_record? }
 
   private
 

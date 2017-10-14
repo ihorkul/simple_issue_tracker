@@ -1,4 +1,4 @@
-.panel.panel-primary
+.panel{ class: ticket_class(issue), data: { issue_id: issue.id }}
   .panel-heading= issue.key
   .panel-body= issue.subject
   .panel-footer
