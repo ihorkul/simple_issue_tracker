@@ -2,6 +2,8 @@ class IssuesController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
+    @statuses = Status.all.order(:id)
+    @issues = Issue.all
   end
 
   def new
