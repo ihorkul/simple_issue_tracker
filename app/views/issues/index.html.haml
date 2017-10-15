@@ -1,6 +1,7 @@
 .issue_wrapper
   .issues_board
-    =render @statuses
+    - @statuses.each do |status|
+      =render partial: 'column', locals: { status: status }
 
 :javascript
   sortable_tickets()

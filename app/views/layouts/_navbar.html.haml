@@ -4,17 +4,15 @@
     .collapse.navbar-collapse#bs-example-navbar-collapse-1
       -if user_signed_in?
         %ul.nav.navbar-nav
-          %li
-            = link_to 'Issues', issues_path
+          %li= link_to 'Issues', issues_path
+          -if current_user.is_admin?
+            %li= link_to 'Statuses', statuses_path
         %form.navbar-form.navbar-left
           .form-group
             %input.form-control{'type' => "text", 'placeholder' => "Search" }
-            %button.btn.btn-default{ 'type'=>"submit" }
-              Submit
+            %button.btn.btn-default{ 'type'=>"submit" } Submit
         %ul.nav.navbar-nav.navbar-right
-          %li
-            = link_to 'Logout', destroy_user_session_path, :method => :delete
+          %li= link_to 'Logout', destroy_user_session_path, :method => :delete
       -else
         %ul.nav.navbar-nav.navbar-right
-          %li
-            = link_to 'Login', new_user_session_path
+          %li= link_to 'Login', new_user_session_path

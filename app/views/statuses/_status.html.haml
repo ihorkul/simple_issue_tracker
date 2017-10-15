@@ -1,4 +1,1 @@
-.column
-  .column_header{ data: {status_id: status.id }}= status.name
-  .column_content
-    = render issues_with(status)     
+%li= status.name
