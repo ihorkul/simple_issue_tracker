@@ -5,4 +5,5 @@ Rails.application.routes.draw do
 
   get '/issues/:key/edit', to: 'issues#edit', as: :edit_issue
   resources :issues, only: [:index, :new, :create, :update, :show]
+  resources :comments, only: [:create]
 end

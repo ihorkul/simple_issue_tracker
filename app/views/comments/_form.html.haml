@@ -1,0 +1,10 @@
+= form_for @comment, remote:true do |f|
+  .comment_errors=render partial: 'layouts/errors', locals: { resource: @comment }
+  = f.hidden_field :issue_id, value: @issue.id
+  = f.hidden_field :user_id, value: comment_user_id
+  .form-group.row
+    = f.label :text, 'message', class: 'col-sm-2 col-form-label col-form-label-lg'
+    .col-sm-10
+      = f.text_area :text, class: "form-control form-control-lg", placeholder: "Type your message here..."
+  .form-group.row
+    = f.submit 'Send', class: "btn btn-primary pull-right"

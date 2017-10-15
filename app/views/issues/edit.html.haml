@@ -1,2 +1,7 @@
 .container
   = render 'form'
+  %h3 Comments:
+  .row.comments
+    =render @issue.comments
+  .row
+    =render 'comments/form'

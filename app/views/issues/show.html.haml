@@ -27,5 +27,8 @@
     .col-md-3 Content:
     .col-md-9= @issue.content
   %h3 Comments:
-
+  .row.comments
+    =render @issue.comments
+  .row
+    =render 'comments/form'
       

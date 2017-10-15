@@ -22,11 +22,13 @@ class IssuesController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
   end
 
   def edit
     @issue = Issue.find_by(key: params[:key])
     @user_name = @issue.user_name
+    @comment = Comment.new
   end
 
   def update
