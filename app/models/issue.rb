@@ -7,7 +7,7 @@ class Issue < ApplicationRecord
   has_many :comments
 
   before_validation :set_validatable_fields, if: ->(issue) { issue.new_record? }
-
+  after_commit :send_email
   def self.search(id, input_field)
     return Issue.where(user_id: [nil, id]) if input_field.blank? || input_field.nil?
     Issue.where("key ILIKE :input_field OR content ILIKE :input_field OR subject ILIKE :input_field",
@@ -15,6 +15,14 @@ class Issue < ApplicationRecord
   end
 
   private
+
+  def send_email
+    if previous_changes[:id]
+      IssueMailer.send_link(id).deliver_now
+    else
+      IssueMailer.inform_user(id).deliver_now
+    end
+  end
 
   def set_validatable_fields
     set_status unless status_id

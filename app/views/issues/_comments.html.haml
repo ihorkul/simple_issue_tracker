@@ -1,0 +1,8 @@
+.comments_block
+  -if current_user.id == @issue.user_id
+    .row.comments
+      =render @issue.comments
+    .row
+      =render 'comments/form'
+  -else
+    .row Assign this issue on you to write comments

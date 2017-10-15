@@ -1,0 +1,11 @@
+-if flash[:success]
+  :plain
+    $('.flashes').replaceWith("#{j render 'layouts/flash'}")
+  -flash.clear
+  :plain
+    $('.row.comments').append("#{j render @comment}")
+    $('#comment_text').val('')
+    $('.comment_errors').empty()
+-else
+  :plain
+    $('.comment_errors').html("#{j render partial: 'layouts/errors', locals: { resource: @comment }}")

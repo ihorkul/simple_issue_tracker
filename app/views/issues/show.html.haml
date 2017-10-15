@@ -18,7 +18,7 @@
     .col-md-9= @issue.department.name
   .row
     .col-md-3 Status
-    .col-md-5= select_tag 'status_id', options_from_collection_for_select(Status.all, 'id', 'name'), class: 'form-control select update_status', autocomplete: :off
+    .col-md-5= select_tag 'status_id', options_from_collection_for_select(Status.all, 'id', 'name', @issue.status_id), class: 'form-control select update_status', autocomplete: :off
     .col-md-4
   .row
     .col-md-3 Subject
@@ -27,8 +27,5 @@
     .col-md-3 Content:
     .col-md-9= @issue.content
   %h3 Comments:
-  .row.comments
-    =render @issue.comments
-  .row
-    =render 'comments/form'
+  =render 'comments'
       

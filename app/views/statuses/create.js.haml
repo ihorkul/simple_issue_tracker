@@ -1,0 +1,9 @@
+-if flash[:success]
+  :plain
+    $('.flashes').replaceWith("#{j render 'layouts/flash'}")
+  -flash.clear
+  $('ul.statuses').append("#{j render @status}")
+  $('#status_name').val('')
+  $('.status_errors').empty()
+-else
+  $('.status_errors').html("#{j render partial: 'layouts/errors', locals: { resource: @status }}")
