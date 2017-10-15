@@ -8,6 +8,12 @@ class Issue < ApplicationRecord
 
   before_validation :set_validatable_fields, if: ->(issue) { issue.new_record? }
 
+  def self.search(id, input_field)
+    return Issue.where(user_id: [nil, id]) if input_field.blank? || input_field.nil?
+    Issue.where("key ILIKE :input_field OR content ILIKE :input_field OR subject ILIKE :input_field",
+                input_field: "%#{input_field}%").where(user_id: [nil, id])
+  end
+
   private
 
   def set_validatable_fields

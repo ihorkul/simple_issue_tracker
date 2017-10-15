@@ -4,7 +4,7 @@ class IssuesController < ApplicationController
 
   def index
     @statuses = Status.all.order(:id)
-    @issues = Issue.all.includes(:department)
+    @issues = Issue.search(current_user.id, params[:search]).includes(:department)
   end
 
   def new
@@ -45,5 +45,9 @@ class IssuesController < ApplicationController
 
   def issue_params
     params.require(:issue).permit(:user_name, :email, :department_id, :subject, :content, :user_id, :status_id)
+  end
+
+  def search_params
+
   end
 end

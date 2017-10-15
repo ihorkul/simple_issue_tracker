@@ -7,10 +7,10 @@
           %li= link_to 'Issues', issues_path
           -if current_user.is_admin?
             %li= link_to 'Statuses', statuses_path
-        %form.navbar-form.navbar-left
+        = form_tag issues_path, method: :get, class: 'navbar-form navbar-left' do
           .form-group
-            %input.form-control{'type' => "text", 'placeholder' => "Search" }
-            %button.btn.btn-default{ 'type'=>"submit" } Submit
+          = text_field_tag :search, params[:search], {class: 'form-control', placeholder: 'Search'}
+          = submit_tag "Search", class: 'btn btn-default'
         %ul.nav.navbar-nav.navbar-right
           %li= link_to 'Logout', destroy_user_session_path, :method => :delete
       -else
