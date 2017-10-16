@@ -1,4 +1,6 @@
-# README
+[![Build Status](https://travis-ci.org/ihorkul/simple_issue_tracker.svg?branch=master)](https://travis-ci.org/ihorkul/simple_issue_tracker)
+
+SIMPLE ISSUE TRACKER
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
