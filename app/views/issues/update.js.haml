@@ -1,6 +1,7 @@
 -if @issue.previous_changes[:user_id]
   -@comment = Comment.new
   $('.comments_block').replaceWith("#{j render 'issues/comments'}")
+  $('.assigned_person').text("#{@issue.user.email}")
 :plain
   $('.errors').empty()
   if ($('.panel').length){
@@ -8,7 +9,6 @@
   } else {
     $('.errors').html("#{j render partial: 'layouts/errors', locals: { resource: @issue }}")
     $('.flashes').replaceWith("#{j render 'layouts/flash'}")
-    $('.assigned_person').text("#{@issue.user.email}")
   }
 -flash.clear
 

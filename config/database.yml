@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: <%= ENV['DB_USER_NAME'] %>
+  password: <%= ENV['DB_USER_PASSWD'] %>
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 20
+
+development:
+  <<: *default
+  database: simple_issue_tracker_development
+
+test:
+  <<: *default
+  database: simple_issue_tracker_test
+
+production:
+  <<: *default
+  database: simple_issue_tracker_productio

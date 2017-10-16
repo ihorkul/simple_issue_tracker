@@ -1,5 +1,5 @@
 class IssuesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:new, :edit]
+  skip_before_action :authenticate_user!, except: [:index, :show]
   before_action :set_issue, only: [:update, :show]
 
   def index
@@ -22,7 +22,7 @@ class IssuesController < ApplicationController
   end
 
   def show
-    @comment = Comment.new
+    @comment = Comment.new if @issue.user_id == current_user.id
   end
 
   def edit
@@ -33,7 +33,7 @@ class IssuesController < ApplicationController
 
   def update
     @issue.assign_attributes(issue_params)
-    @issue.user_id = current_user.id if @issue.user_id.nil?
+    @issue.user = current_user if @issue.user_id.nil?
     flash[:success] = 'Ticket was successfully updated.' if @issue.save
   end
 

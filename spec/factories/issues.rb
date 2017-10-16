@@ -1,11 +1,18 @@
 FactoryGirl.define do
   factory :issue do
-    subject "MyString"
-    content "MyText"
+    subject "Test Issue"
+    content "Test Content"
     department_id 1
-    user nil
-    status nil
-    name "MyString"
-    email "MyString"
+    user_id nil
+    status_id nil
+    user_name "Username"
+    email "client@mail.com"
+  end
+
+  factory :invalid_issue, class: 'Issue' do
+    user_name nil
+    email nil
+    content nil
+    department_id nil
   end
 end
