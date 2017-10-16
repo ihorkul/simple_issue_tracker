@@ -1,5 +1,5 @@
 .comments_block
-  -if current_user.id == @issue.user_id
+  -if @comment
     .row.comments
       =render @issue.comments
     .row

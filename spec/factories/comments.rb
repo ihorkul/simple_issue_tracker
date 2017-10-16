@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :comment do
     text "MyText"
-    user nil
+    issue_id nil
+    user_id nil
   end
 end
