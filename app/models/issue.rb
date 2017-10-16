@@ -18,9 +18,9 @@ class Issue < ApplicationRecord
 
   def send_email
     if previous_changes[:id]
-      IssueMailer.send_link(id).deliver_now
+      IssueMailer.send_link(id).deliver_later
     else
-      IssueMailer.inform_user(id).deliver_now
+      IssueMailer.inform_user(id).deliver_later
     end
   end
 
