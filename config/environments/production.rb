@@ -88,4 +88,6 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  config.host_name = 'young-wave-24089.herokuapp.com'
+  config.action_mailer.default_url_options = { host: 'young-wave-24089.herokuapp.com', protocol: 'https://' }
 end
