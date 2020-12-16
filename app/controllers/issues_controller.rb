@@ -47,7 +47,5 @@ class IssuesController < ApplicationController
     params.require(:issue).permit(:user_name, :email, :department_id, :subject, :content, :user_id, :status_id)
   end
 
-  def search_params
-
-  end
+  # refactore 3
 end
