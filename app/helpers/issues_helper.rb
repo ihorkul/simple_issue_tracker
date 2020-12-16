@@ -4,10 +4,8 @@ module IssuesHelper
   end
 
   def ticket_class(issue)
-    if issue.user_id.nil?
-      'panel-default'
-    else
-      'panel-primary'
-    end
+    return 'panel-default' if issue.user_id.nil?
+
+    'panel-primary'
   end
 end
